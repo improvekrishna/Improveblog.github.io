@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{{ page.title | default: site.title }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+  
   <style>
     /* Reset & CSS Styles */
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -49,7 +51,7 @@
       <nav>
         <ul>
           <li><a href="/">Home</a></li>
-          <li><a href="#">Articles</a></li>
+          <li><a href="#">Archives</a></li>
           <li><a href="#">About</a></li>
           <li><a href="#">Contact</a></li>
         </ul>
