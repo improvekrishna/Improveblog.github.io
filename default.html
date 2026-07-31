@@ -49,15 +49,14 @@
       <p><i><b>[put it into nutshell]</b></i></p>
       <nav>
         <ul>
-          <li><a href="/">Home</a></li>
-<<<<<<< HEAD
-          <li><a href="#">Archives</a></li>
-=======
-          <li><a href="{{'/archives/' | relative_url }}">Archives</a>
-          </li>
->>>>>>> 156b10f (add archives page)
-          <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
+          
+        <a href="{{ '/' | relative_url }}">Home</a>
+        <a href="{{ '/archives/' | relative_url }}">Archives</a>
+        <a href="{{ '/about/' | relative_url }}">About</a>
+        <a href="{{ '/contact/' | relative_url }}">Contact</a>
+
+
+          
         </ul>
       </nav>
     </div>
