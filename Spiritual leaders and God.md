@@ -1,7 +1,7 @@
 ---
-layout: default
-title: Archives
-permalink: /archives/
+layout: post
+title: "Spiritual leaders and God"
+
 ---
 സനാതനധര്‍മ്മം വേദങ്ങളെയും അതിലെ അനുഷ്ഠാനങ്ങളെയും പതിയെ പതിയെ ഉപേക്ഷിക്കാനും
 താന്ത്രികാചാരങ്ങളും പുരാണ-ഇതിഹാസ കഥാപാത്രങ്ങളെ ആരാധിക്കാനും
