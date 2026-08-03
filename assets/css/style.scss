@@ -20,6 +20,28 @@
 .archive-list a:hover {
   text-decoration: underline;
 }
+.read-more-btn, .read-less-btn {
+  display: inline-block;
+  font-weight: 600;
+  background-color: #ebf8ff;
+  color: #3182ce;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: 1px solid #3182ce;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.read-less-btn {
+  background-color: #edf2f7;
+  color: #4a5568;
+  border-color: #cbd5e0;
+}
+
+.read-more-btn:hover, .read-less-btn:hover {
+  opacity: 0.85;
+}
 
 .post-date {
   font-size: 0.8rem;
