@@ -8,5 +8,24 @@ layout: default
   </header>
   <div class="post-content">
     {{ content }}
+  <div class="post">
+  <h2 class="post-title">Post Title</h2>
+  
+  <!-- ചുരുക്കിയ വിവരണം (Excerpt) -->
+  <div class="post-excerpt" id="excerpt-1">
+    ഇവിടെ പോസ്റ്റിന്റെ ചെറിയ വിവരണം നൽകാം...
+  </div>
+
+  <!-- പൂർണ്ണ വിവരണം (Full Content) -->
+  <div class="post-full-content" id="full-content-1" style="display: none;">
+    ഇവിടെ പോസ്റ്റിന്റെ ബാക്കി വിവരങ്ങൾ പൂർണ്ണമായി വായിക്കാം...
+  </div>
+
+  <!-- ബട്ടണുകൾ -->
+  <div class="toggle-buttons">
+    <button class="read-more-btn" onclick="toggleContent(1, true)">ബാക്കി വായിക്കുക (Read More)</button>
+    <button class="read-less-btn" id="read-less-1" onclick="toggleContent(1, false)" style="display: none;">ചുരുക്കുക (Read Less)</button>
+  </div>
+</div>
   </div>
 </article>
