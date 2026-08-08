@@ -20,6 +20,7 @@
 .archive-list a:hover {
   text-decoration: underline;
 }
+
 .read-more-btn, .read-less-btn {
   display: inline-block;
   font-weight: 600;
@@ -48,14 +49,30 @@
   color: #6c757d;
   margin-left: 4px;
 }
-.post-content {
-  max-width: 800px;         /* Limits line length for readable reading */
-  margin: 0 auto;           /* Centers the content block */
-  padding: 0 1rem;          /* Adds spacing on small mobile screens */
-  word-wrap: break-word;    /* Prevents single words from overflowing */
-  overflow-wrap: break-word;
+
+/* Post Container & Typography Fixes */
+.post-content,
+.post-content.expanded,
+#fullContent {
+  width: 100%;
+  max-width: 100%; /* Prevents breaking out of parent bounds */
+  box-sizing: border-box;
+  padding: 0 1rem;
+  margin: 0 auto;
+  
+  /* CRITICAL FIX: Forces long Malayalam script/lines to wrap naturally */
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  white-space: normal;
+  
+  /* Prevents horizontal scrollbars from appearing */
+  overflow-x: hidden; 
 }
-.post-content p {
+
+.post-content p,
+#fullContent p {
   margin-bottom: 1.5rem;
   line-height: 1.8;       /* Improves readability for Malayalam text */
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }

@@ -1,6 +1,26 @@
 ---
 layout: default
 ---
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">{{ page.title }}</h1>
+  </header>
+
+  <div class="post-content">
+    {{ content }}
+  </div>
+</article>
+
+<!-- Place Google Analytics in <head> or _includes/head.html, NOT breaking the article wrapper -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'GA_TRACKING_ID');
+</script>
+
+
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-47YGG6B40V"></script>
@@ -11,24 +31,3 @@ layout: default
 
   gtag('config', 'G-47YGG6B40V');
 </script>
-
-<article class="post">
-  <header class="post-header">
-    <h1 class="post-title">{{ page.title }}</h1>
-    <p class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %d, %Y" }}</time></p>
-  </header>
-
-  <div class="post-content">
-
-    {{ content }}
-
-    <div class="toggle-buttons">
-      <button class="read-more-btn" onclick="toggleContent(1, true)">ബാക്കി വായിക്കുക (Read More)</button>
-      <button class="read-less-btn" id="read-less-1" onclick="toggleContent(1, false)" style="display: none;">ചുരുക്കുക (Read Less)</button>
-    </div>
-
-  </div>
-</article>
-<article class="post-content">
-  {{ content }}
-</article>
