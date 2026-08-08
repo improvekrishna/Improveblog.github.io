@@ -48,3 +48,14 @@
   color: #6c757d;
   margin-left: 4px;
 }
+.post-content {
+  max-width: 800px;         /* Limits line length for readable reading */
+  margin: 0 auto;           /* Centers the content block */
+  padding: 0 1rem;          /* Adds spacing on small mobile screens */
+  word-wrap: break-word;    /* Prevents single words from overflowing */
+  overflow-wrap: break-word;
+}
+.post-content p {
+  margin-bottom: 1.5rem;
+  line-height: 1.8;       /* Improves readability for Malayalam text */
+}
