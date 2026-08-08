@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ page.title | default: site.title }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+  <style>
+    /* Reset & CSS Styles */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.6; color: #2d3748; background-color: #f7fafc; }
+    a { color: #3182ce; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Header */
+    header { background-color: #ffffff; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 100; }
+    .header-container { max-width: 1100px; margin: 0 auto; padding: 1.25rem 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.5rem; font-weight: 700; color: #1a202c; }
+    nav ul { display: flex; list-style: none; gap: 1.5rem; }
+    nav a { color: #4a5568; font-weight: 500; }
+
+    /* Layout Container */
+    .container { max-width: 1100px; margin: 2rem auto; padding: 0 1.5rem; display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; }
+    
+    /* Posts */
+    .post { background-color: #ffffff; border-radius: 8px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .post-meta { font-size: 0.875rem; color: #718096; margin-bottom: 0.5rem; }
+    .post-title { font-size: 1.75rem; margin-bottom: 1rem; color: #1a202c; }
+    .post-excerpt { margin-bottom: 1.5rem; color: #4a5568; }
+    .read-more { display: inline-block; font-weight: 600; background-color: #ebf8ff; padding: 0.5rem 1rem; border-radius: 6px; }
+
+    /* Sidebar & Footer */
+    .sidebar-widget { background-color: #ffffff; border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .widget-title { font-size: 1.25rem; margin-bottom: 1rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem; }
+    .bio-img { width: 100px; height: 100px; border-radius: 50%; overflow: hidden; margin-bottom: 1rem; }
+    .bio-img img { width: 100%; height: 100%; object-fit: cover; }
+    .sidebar-widget ul { list-style: none; }
+    .sidebar-widget li { margin-bottom: 0.5rem; }
+    footer { background-color: #ffffff; border-top: 1px solid #e2e8f0; text-align: center; padding: 2rem 1.5rem; color: #718096; margin-top: 3rem; }
+
+    @media (max-width: 768px) { .container { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <a href="/" class="logo">ImproveBlog.</a>
+      <p><i><b>[put it into nutshell]</b></i></p>
+      <nav>
+                  
+        <a href="{{ '/' | relative_url }}">Home</a>
+        <a href="{{ '/archives/' | relative_url }}">Archives</a>
+        <a href="{{ '/about/' | relative_url }}">About</a>
+        <a href="{{ '/contact/' | relative_url }}">Contact</a>
+
+                 
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- Jekyll inserts post loop or individual post content here -->
+    <main>
+      {{ content }}
+    </main>
+
+    <!-- Sidebar -->
+    <aside>
+      <div class="sidebar-widget">
+        <h3 class="widget-title">About Author</h3>
+        <div class="bio-img">
+          <img src="{{ '/assets/images/profile.jpg' | relative_url }}"alt="PG RADHAKRISHNAN">
+        </div>
+        <p><strong>PG RADHAKRISHNAN</strong></p>
+        <p>Namasthe! My eccentric queries and its replies, with AIs.</p>
+      </div>
+
+      <div class="sidebar-widget">
+        <h3 class="widget-title">Categories</h3>
+        <ul>
+          <li><a href="#">Spirituality and God (12)</a></li>
+          <li><a href="#">Commonman and God (8)</a></li>
+          <li><a href="#">Science and God</a></li>
+          <li><a href="#">Technology and God</a></li>
+          <li><a href="#">Mind and God</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div><!-- Archive section -->
+   <div class="sidebar-section" style="margin-top:20px;">
+     <h2>Archive</h2>
+     <ul class="archive-list">
+        {% assign postsByYear = site.posts | group_by_exp:"post","post.date | date: '%Y'" %}
+
+        {% for year in postsByYear %}
+          <li style="margin-bottom: 10px">
+            <strong>{{ year.name }}</strong>({{ year.items | size }})
+            <ul>
+              {% for post in year.items %}
+                <li>
+                  <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                  <span class="post-date">({{ post.date | date: "%b %d" }} </span>
+                </li>
+              {% endfor %}
+            </ul>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  
+  
+
+  <footer>
+    <p>&copy; {{ "now" | date: "%Y" }} ImproveBlog.[@pgrAdhakrIshnan] Built with HTML & Jekyll.</p>
+  </footer>
+
+</body>
+</html>
