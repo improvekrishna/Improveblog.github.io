@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="ml">
 <head>
+  
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{{ page.title | default: site.title }}</title>
-  <link rel="stylesheet" href="{{ '/assets/css/style.scss' | relative_url }}?v={{site.time | date: '%s'}}">
+  <link rel="stylesheet" href="{{ '/assets/css/style.scss' | relative_url }}?v={{ site.time | date: '%s' }}">
+  
   <style>
     /* Reset & CSS Styles */
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -16,6 +18,7 @@
     header { background-color: #ffffff; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 100; }
     .header-container { max-width: 1100px; margin: 0 auto; padding: 1.25rem 1.5rem; display: flex; justify-content: space-between; align-items: center; }
     .logo { font-size: 1.5rem; font-weight: 700; color: #1a202c; }
+    .header-subtitle { font-size: 0.875rem; color: #718096; }
     nav ul { display: flex; list-style: none; gap: 1.5rem; }
     nav a { color: #4a5568; font-weight: 500; }
 
@@ -40,46 +43,46 @@
 
     @media (max-width: 768px) { .container { grid-template-columns: 1fr; } }
   </style>
-</head>
-<script>
-function toggleContent(id, showMore) {
-  const fullContent = document.getElementById('full-content-' + id);
-  const readMoreBtn = document.querySelector(`#excerpt-${id}`).nextElementSibling.nextElementSibling.querySelector('.read-more-btn');
-  const readLessBtn = document.getElementById('read-less-' + id);
 
-  if (showMore) {
-    fullContent.style.display = 'block';
-    readMoreBtn.style.display = 'none';
-    readLessBtn.style.display = 'inline-block';
-  } else {
-    fullContent.style.display = 'none';
-    readMoreBtn.style.display = 'inline-block';
-    readLessBtn.style.display = 'none';
-  }
-}
-</script>
+  <script>
+    function toggleContent(id, showMore) {
+      const fullContent = document.getElementById('full-content-' + id);
+      const readMoreBtn = document.querySelector(`#excerpt-${id}`).nextElementSibling.nextElementSibling.querySelector('.read-more-btn');
+      const readLessBtn = document.getElementById('read-less-' + id);
+
+      if (showMore) {
+        fullContent.style.display = 'block';
+        readMoreBtn.style.display = 'none';
+        readLessBtn.style.display = 'inline-block';
+      } else {
+        fullContent.style.display = 'none';
+        readMoreBtn.style.display = 'inline-block';
+        readLessBtn.style.display = 'none';
+      }
+    }
+  </script>
+</head>
 <body>
 
   <header>
     <div class="header-container">
-      <a href="/" class="logo">ImproveBlog.</a>
-      <p><i><b>[put it into nutshell]</b></i></p>
-      <li> [ Not for Serious Reading ]</li>
+      <div>
+        <a href="/" class="logo">ImproveBlog.</a>
+        <p class="header-subtitle"><i><b>[put it into nutshell]</b></i> — [ Not for Serious Reading ]</p>
+      </div>
       <nav>
-        
-       
-        <a href="{{ '/' | relative_url }}">Home</a>
-        <a href="{{ '/archives/' | relative_url }}">Archives</a>
-        <a href="{{ '/about/' | relative_url }}">About</a>
-        <a href="{{ '/contact/' | relative_url }}">Contact</a>
-
-
+        <ul>
+          <li><a href="{{ '/' | relative_url }}">Home</a></li>
+          <li><a href="{{ '/archives/' | relative_url }}">Archives</a></li>
+          <li><a href="{{ '/about/' | relative_url }}">About</a></li>
+          <li><a href="{{ '/contact/' | relative_url }}">Contact</a></li>
+        </ul>
       </nav>
     </div>
   </header>
 
   <div class="container">
-    <!-- Jekyll inserts post loop or individual post content here -->
+    <!-- Main Content -->
     <main>
       {{ content }}
     </main>
@@ -89,7 +92,7 @@ function toggleContent(id, showMore) {
       <div class="sidebar-widget">
         <h3 class="widget-title">About Author</h3>
         <div class="bio-img">
-          <img src="/blog/assets/images/profile.jpg" alt="Profile photo" />
+          <img src="{{ '/assets/images/profile.jpg' | relative_url }}" alt="Profile photo" />
         </div>
         <p><strong>PG RADHAKRISHNAN</strong></p>
         <p>Namasthe! My eccentric queries and its replies, with AIs.</p>
@@ -106,33 +109,32 @@ function toggleContent(id, showMore) {
           <li><a href="#">Mind and God</a></li>
         </ul>
       </div>
+
+      <!-- Archive section moved inside <aside> for consistent layout -->
+      <div class="sidebar-widget">
+        <h3 class="widget-title">Archive</h3>
+        <ul class="archive-list">
+          {% assign postsByYear = site.posts | group_by_exp:"post","post.date | date: '%Y'" %}
+          {% for year in postsByYear %}
+            <li style="margin-bottom: 10px">
+              <strong>{{ year.name }}</strong> ({{ year.items | size }})
+              <ul>
+                {% for post in year.items %}
+                  <li>
+                    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                    <span class="post-date">({{ post.date | date: "%b %d" }})</span>
+                  </li>
+                {% endfor %}
+              </ul>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
     </aside>
   </div>
-  <!-- Archive section -->
-   <div class="sidebar-section" style="margin-top:20px;">
-     <h2>Archive</h2>
-     <ul class="archive-list">
-        {% assign postsByYear = site.posts | group_by_exp:"post","post.date | date: '%Y'" %}
-
-        {% for year in postsByYear %}
-          <li style="margin-bottom: 10px">
-            <strong>{{ year.name }}</strong>({{ year.items | size }})
-            <ul>
-              {% for post in year.items %}
-                <li>
-                  <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-                  <span class="post-date">({{ post.date | date: "%b %d" }} </span>
-                </li>
-              {% endfor %}
-            </ul>
-          </li>
-        {% endfor %}
-      </ul>
-    </div>
-  
 
   <footer>
-    <p>&copy; {{ "now" | date: "%Y" }} ImproveBlog.[@pgrAdhakrIshnan] Built with HTML & Jekyll.</p>
+    <p>&copy; {{ "now" | date: "%Y" }} ImproveBlog. [@pgrAdhakrIshnan] Built with HTML & Jekyll.</p>
   </footer>
 
 </body>
